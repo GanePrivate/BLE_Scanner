@@ -24,3 +24,4 @@ app.run(host="127.0.0.1", port=6001)
 #threaded=True
 
 # curl -X GET http://127.0.0.1:6001/command?start=true\&option=null
+# git clone https://GanePrivate@github.com/BLE_Scanner.git
