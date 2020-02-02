@@ -1,7 +1,15 @@
+from flask import Flask, request, jsonify, make_response
+from flask_cors import CORS
+from flask import request
+import json
+import threading
+import subprocess
 import time
 import datetime
 from beacontools import BeaconScanner, IBeaconFilter
 
+app = Flask(__name__)
+CORS(app) # クロスドメインのエラー対策
 
 path_w = './ble.csv'
 BleGetFlag = True
@@ -39,6 +47,7 @@ def callback(bt_addr, rssi, packet, additional_info):
     print('{}m'.format(10**((-70 - rssi) / 20)))
 
 
+@app.route("/command", methods=['GET'])
 def main():
     # scan for all iBeacon advertisements from beacons with the specified uuid
     scanner = BeaconScanner(
@@ -52,5 +61,4 @@ def main():
     write_file(datalist)
 
 
-if __name__ == '__main__':
-    main()
+app.run(host="127.0.0.1", port=6002)

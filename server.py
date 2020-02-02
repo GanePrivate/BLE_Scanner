@@ -17,7 +17,7 @@ def webhook():
     # print(params)
     # print(request.data)
     # print(request.args.get('start'))
-    if request.args.get('start') == 'start':
+    if request.args.get('start') == 'true':
         cmd = "git pull"
         subprocess.call(cmd.split())
     return make_response(request.data)
