@@ -50,8 +50,6 @@ def callback(bt_addr, rssi, packet, additional_info):
 @app.route("/command", methods=['GET'])
 def main():
     if request.args.get('start') == 'true':
-        cmd = "git pull"
-        subprocess.call(cmd.split())
         # scan for all iBeacon advertisements from beacons with the specified uuid
         # scanner = BeaconScanner(
         #     callback,
