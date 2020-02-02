@@ -60,8 +60,7 @@ def main():
         # time.sleep(15)
         # scanner.stop()
         # write_file(datalist)
-        print('OK!!!!')
-        return make_response(request.data)
+    return make_response(request.data)
 
 
 app.run(host="127.0.0.1", port=6002)

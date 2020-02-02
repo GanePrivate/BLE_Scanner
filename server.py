@@ -21,7 +21,7 @@ def webhook():
         cmd = "git pull"
         subprocess.call(cmd.split())
     if request.args.get('option') == 'true':
-        cmd = "curl -X GET http://127.0.0.1:6002/command?start=true\&option=true"
+        cmd = "curl -X GET http://127.0.0.1:6002/command?start=true"
         subprocess.call(cmd.split())
     return make_response(request.data)
 
