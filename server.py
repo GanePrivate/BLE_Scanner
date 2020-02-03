@@ -17,11 +17,15 @@ def webhook():
     # print(params)
     # print(request.data)
     # print(request.args.get('start'))
+
+    # startコマンドが来たらBLEビーコンのスキャン・受信を実行
     if request.args.get('start') == 'true':
-        cmd = "git pull"
+        cmd = "sudo python3 ble.py"
         subprocess.call(cmd.split())
-    if request.args.get('option') == 'true':
-        cmd = "curl -X GET http://127.0.0.1:6002/command?start=true"
+
+    # pullコマンドが来たら変更点をpullする
+    if request.args.get('pull') == 'true':
+        cmd = "git pull"
         subprocess.call(cmd.split())
     return make_response(request.data)
 
@@ -29,6 +33,6 @@ def webhook():
 app.run(host="127.0.0.1", port=6001)
 #threaded=True
 
-# curl -X GET http://127.0.0.1:6001/command?start=true\&option=null
+# curl -X GET http://127.0.0.1:6001/command?start=true\&pull=true
 # git clone https://github.com/GanePrivate/BLE_Scanner.git
 # git pull

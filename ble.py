@@ -1,8 +1,3 @@
-from flask import Flask, request, jsonify, make_response
-from flask_cors import CORS
-from flask import request
-import json
-import threading
 import subprocess
 import time
 import datetime
@@ -47,20 +42,18 @@ def callback(bt_addr, rssi, packet, additional_info):
     print('{}m'.format(10**((-70 - rssi) / 20)))
 
 
-@app.route("/command", methods=['GET'])
 def main():
-    if request.args.get('start') == 'true':
-        scan for all iBeacon advertisements from beacons with the specified uuid
-        scanner = BeaconScanner(
-            callback,
-            device_filter=IBeaconFilter(uuid="e7d61ea3-f8dd-49c8-8f2f-f2484c07acb9", major=7436, minor=17873)
-        )
+    # scan for all iBeacon advertisements from beacons with the specified uuid
+    scanner = BeaconScanner(
+        callback,
+        device_filter=IBeaconFilter(uuid="e7d61ea3-f8dd-49c8-8f2f-f2484c07acb9", major=7436, minor=17873)
+    )
 
-        scanner.start()
-        time.sleep(15)
-        scanner.stop()
-        write_file(datalist)
-        return make_response(request.data)
+    scanner.start()
+    time.sleep(15)
+    scanner.stop()
+    write_file(datalist)
 
 
-app.run(host="127.0.0.1", port=6002)
+if __name__ == '__main__':
+    main()
