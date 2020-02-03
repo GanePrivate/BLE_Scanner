@@ -10,7 +10,7 @@ CORS(app) # クロスドメインのエラー対策
 
 
 @app.route("/command", methods=['GET'])
-def webhook():
+def start_scan():
     # URLパラメータ
     params = request.args
     # print(params)
@@ -27,15 +27,11 @@ def webhook():
         cmd = "git pull"
         subprocess.call(cmd.split())
 
-    # test_code
-    if equest.args.get('hello') == 'true':
-        return make_response(jsonify({'result': 'hello world!'}))
-
     return make_response(request.data)
 
 
 @app.route("/pull", methods=['GET'])
-def webhook():
+def pull():
     # URLパラメータ
     params = request.args
     # print(params)
@@ -44,22 +40,15 @@ def webhook():
 
     cmd = "git pull"
     subprocess.call(cmd.split())
-
-    # test_code
-    if equest.args.get('hello') == 'true':
-        return make_response(jsonify({'result': 'hello world!'}))
-
     return make_response(request.data)
 
 
 @app.route("/hello", methods=['GET'])
-def webhook():
+def hello():
     return make_response(jsonify({'result': 'hello world!'}))
 
 
-
 app.run(host="192.168.1.5", port=7000, threaded=True)
-#threaded=True
 
 # curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
 # git clone https://github.com/GanePrivate/BLE_Scanner.git
