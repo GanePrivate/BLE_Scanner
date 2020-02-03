@@ -3,8 +3,6 @@ import time
 import datetime
 from beacontools import BeaconScanner, IBeaconFilter
 
-app = Flask(__name__)
-CORS(app) # クロスドメインのエラー対策
 
 path_w = './ble.csv'
 BleGetFlag = True
