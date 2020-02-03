@@ -30,9 +30,9 @@ def webhook():
     return make_response(request.data)
 
 
-app.run(host="127.0.0.1", port=6001)
+app.run(host="127.0.0.1", port=7000)
 #threaded=True
 
-# curl -X GET http://127.0.0.1:6001/command?start=true\&pull=true
+# curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
 # git clone https://github.com/GanePrivate/BLE_Scanner.git
 # git pull
