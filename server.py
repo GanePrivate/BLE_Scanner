@@ -30,7 +30,7 @@ def webhook():
     return make_response(request.data)
 
 
-app.run(host="127.0.0.1", port=7000)
+app.run(host="192.168.1.5", port=7000)
 #threaded=True
 
 # curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
