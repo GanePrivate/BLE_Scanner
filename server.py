@@ -9,7 +9,52 @@ app = Flask(__name__)
 CORS(app) # クロスドメインのエラー対策
 
 
-@app.route("/command", methods=['GET'])
+# startコマンドが来たらBLEビーコンのスキャン・受信を実行
+@app.route("/start", methods=['GET'])
+def start_scan():
+    # URLパラメータ
+    params = request.args
+    # print(params)
+    # print(request.data)
+    # print(request.args.get('start'))
+    cmd = "sudo python3 ble.py"
+    subprocess.call(cmd.split())
+    return make_response(request.data)
+
+
+# pullコマンドが来たら変更点をマージする
+@app.route("/pull", methods=['GET'])
+def pull():
+    # URLパラメータ
+    params = request.args
+    # print(params)
+    # print(request.data)
+    # print(request.args.get('start'))
+
+    cmd = "git pull"
+    subprocess.call(cmd.split())
+    return make_response(request.data)
+
+
+# テストコード
+@app.route("/hello", methods=['GET'])
+def hello():
+    return make_response(jsonify({'result': 'hello world!'}))
+
+
+app.run(host="192.168.1.5", port=7000, threaded=True)
+
+
+""" メモ
+curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
+curl -X GET http://127.0.0.1:7000/start
+curl -X GET http://127.0.0.1:7000/hello
+git clone https://github.com/GanePrivate/BLE_Scanner.git
+git pull
+"""
+
+
+""" backup
 def start_scan():
     # URLパラメータ
     params = request.args
@@ -28,28 +73,4 @@ def start_scan():
         subprocess.call(cmd.split())
 
     return make_response(request.data)
-
-
-@app.route("/pull", methods=['GET'])
-def pull():
-    # URLパラメータ
-    params = request.args
-    # print(params)
-    # print(request.data)
-    # print(request.args.get('start'))
-
-    cmd = "git pull"
-    subprocess.call(cmd.split())
-    return make_response(request.data)
-
-
-@app.route("/hello", methods=['GET'])
-def hello():
-    return make_response(jsonify({'result': 'hello world!'}))
-
-
-app.run(host="192.168.1.5", port=7000, threaded=True)
-
-# curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
-# git clone https://github.com/GanePrivate/BLE_Scanner.git
-# git pull
+"""
