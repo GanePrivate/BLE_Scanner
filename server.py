@@ -29,9 +29,33 @@ def webhook():
 
     # test_code
     if equest.args.get('hello') == 'true':
-        return make_response('hello')
+        return make_response(jsonify({'result': 'hello world!'}))
 
     return make_response(request.data)
+
+
+@app.route("/pull", methods=['GET'])
+def webhook():
+    # URLパラメータ
+    params = request.args
+    # print(params)
+    # print(request.data)
+    # print(request.args.get('start'))
+
+    cmd = "git pull"
+    subprocess.call(cmd.split())
+
+    # test_code
+    if equest.args.get('hello') == 'true':
+        return make_response(jsonify({'result': 'hello world!'}))
+
+    return make_response(request.data)
+
+
+@app.route("/hello", methods=['GET'])
+def webhook():
+    return make_response(jsonify({'result': 'hello world!'}))
+
 
 
 app.run(host="192.168.1.5", port=7000, threaded=True)
