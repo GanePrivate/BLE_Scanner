@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from flask import request
 import json
-import threading
 import subprocess
 
 
@@ -30,7 +29,7 @@ def webhook():
     return make_response(request.data)
 
 
-app.run(host="192.168.1.5", port=7000)
+app.run(host="192.168.1.5", port=7000, threaded=True)
 #threaded=True
 
 # curl -X GET http://127.0.0.1:7000/command?start=true\&pull=true
