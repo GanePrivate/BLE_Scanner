@@ -33,7 +33,7 @@ def callback(bt_addr, rssi, packet, additional_info):
     nowtime = now.strftime('%H:%M:%S.%f')
 
     # data = nowtime + "," + str(elapsed_time) + "," + str(bt_addr) + "," + str(rssi) + "," + str(packet) + "," + str(additional_info) + "\n"
-    data = nowtime + ","  + str(rssi)+ "\n"
+    data = nowtime + ","  + str(rssi) + "," + str(10**((-70 - rssi) / 20)) + "\n"
     print("{} :: <{}, {}> {}".format(nowtime, bt_addr, rssi, packet))
     datalist.append(data)
     print("経過時間：{}秒".format(elapsed_time))
