@@ -34,10 +34,11 @@ def callback(bt_addr, rssi, packet, additional_info):
 
     # data = nowtime + "," + str(elapsed_time) + "," + str(bt_addr) + "," + str(rssi) + "," + str(packet) + "," + str(additional_info) + "\n"
     data = nowtime + ","  + str(rssi) + "," + str(10**((-70 - rssi) / 20)) + "\n"
-    print("{} :: <{}, {}> {}".format(nowtime, bt_addr, rssi, packet))
+    # print("{} :: <{}, {}> {}".format(nowtime, bt_addr, rssi, packet))
+    print("{} : {}dBm, {}m".format(nowtime, rssi, 10**((-70 - rssi) / 20)))
     datalist.append(data)
-    print("経過時間：{}秒".format(elapsed_time))
-    print('{}m'.format(10**((-70 - rssi) / 20)))
+    # print("経過時間：{}秒".format(elapsed_time))
+    # print('{}m'.format(10**((-70 - rssi) / 20)))
 
 
 def main():
