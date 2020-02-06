@@ -41,8 +41,11 @@ def pull():
 def hello():
     return make_response(jsonify({'result': 'hello world!'}))
 
+# 自分のIPアドレスを取得する
+cmd = "hostname -I | cut -d\' \' -f1"
+IP = subprocess.check_output(cmd, shell=True).decode('utf-8')
 
-app.run(host="192.168.1.5", port=7000, threaded=True)
+app.run(host=IP, port=7000, threaded=True)
 
 
 """ メモ
