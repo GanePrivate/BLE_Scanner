@@ -43,7 +43,7 @@ def hello():
 
 # 自分のIPアドレスを取得する
 cmd = "hostname -I | cut -d\' \' -f1"
-IP = subprocess.check_output(cmd, shell=True).decode('utf-8')
+IP = subprocess.check_output(cmd, shell=True).decode('utf-8').rstrip('\n')
 
 app.run(host=IP, port=7000, threaded=True)
 
