@@ -3,6 +3,7 @@ import sys
 import time
 import subprocess
 import bluetooth._bluetooth as bluez
+import datetime
 
 cmd = "hostname -I | cut -d\' \' -f1"
 IP = subprocess.check_output(cmd, shell=True).decode('utf-8').rstrip('\n')
@@ -40,4 +41,6 @@ while True:
         if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
             print "----------"
             print str(elapsed_time) + 's : ' + beacon.split(',')[5]
-            datalist.append(str(time.time()) + ',' + beacon.split(',')[5])
+            now = datetime.datetime.now()
+            nowtime = now.strftime('%H:%M:%S.%f')
+            datalist.append(str(nowtime) + ',' + beacon.split(',')[5])
