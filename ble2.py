@@ -19,11 +19,12 @@ blescan.hci_enable_le_scan(sock)
 time_sta = time.time()
 
 while True:
-    if time.time() - time_sta >= 10:
+    elapsed_time = time.time() - time_sta
+    if elapsed_time >= 10:
         print "finish"
         break
     returnedList = blescan.parse_events(sock, 10)
     for beacon in returnedList:
         if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
             print "----------"
-            print beacon
+            print elapsed_time + 's : ' + beacon
