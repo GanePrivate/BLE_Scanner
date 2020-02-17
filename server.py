@@ -17,7 +17,8 @@ def start_scan():
     # print(params)
     # print(request.data)
     # print(request.args.get('start'))
-    cmd = "sudo python3 ble.py"
+    # cmd = "sudo python3 ble.py"
+    cmd = "sudo python2 ble2.py"
     subprocess.call(cmd.split())
     return make_response(request.data)
 
