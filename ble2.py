@@ -40,7 +40,8 @@ while True:
     for beacon in returnedList:
         if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
             print "----------"
-            print str(elapsed_time) + 's : ' + beacon.split(',')[5]
+            rssi = beacon.split(',')[5]
+            print str(elapsed_time) + 's : ' + rssi + ',' + str(10**((-70 - int(rssi)) / 20))
             now = datetime.datetime.now()
             nowtime = now.strftime('%H:%M:%S.%f')
-            datalist.append(str(nowtime) + ',' + beacon.split(',')[5] + '\n')
+            datalist.append(str(nowtime) + ',' + rssi + ',' + str(10**((-70 - int(rssi)) / 20)) + '\n')
