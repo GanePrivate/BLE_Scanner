@@ -43,4 +43,4 @@ while True:
             print str(elapsed_time) + 's : ' + beacon.split(',')[5]
             now = datetime.datetime.now()
             nowtime = now.strftime('%H:%M:%S.%f')
-            datalist.append(str(nowtime) + ',' + beacon.split(',')[5])
+            datalist.append(str(nowtime) + ',' + beacon.split(',')[5] + '\n')
