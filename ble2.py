@@ -16,7 +16,7 @@ def write_file(data):
         for i in data:
             f.write(str(i))
 
-dev_id = 0
+dev_id = 1
 try:
     sock = bluez.hci_open_dev(dev_id)
     print"ble thread started"
