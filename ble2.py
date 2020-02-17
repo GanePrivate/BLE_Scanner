@@ -27,4 +27,4 @@ while True:
     for beacon in returnedList:
         if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
             print "----------"
-            print elapsed_time + 's : ' + beacon
+            print str(int(elapsed_time)) + 's : ' + beacon
