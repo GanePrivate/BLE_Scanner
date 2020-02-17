@@ -4,7 +4,11 @@ import datetime
 from beacontools import BeaconScanner, IBeaconFilter
 
 
-path_w = './ble.csv'
+# 自分のIPアドレスを取得する
+cmd = "hostname -I | cut -d\' \' -f1"
+IP = subprocess.check_output(cmd, shell=True).decode('utf-8').rstrip('\n')
+
+path_w = IP + '.csv'
 BleGetFlag = True
 start = 0
 datalist = []
@@ -12,6 +16,7 @@ datalist = []
 
 # スキャン結果をファイルに書き込む
 def write_file(data):
+    # csvファイルに結果を書き出す
     with open(path_w, mode='a') as f:
         # f.write('受信時間,経過時間(秒),MACアドレス,受信強度(rssi),送信強度,uuid,major,minor,uuid,major,minor\n')
         for i in data:
