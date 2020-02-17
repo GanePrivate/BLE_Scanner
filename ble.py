@@ -22,7 +22,7 @@ def write_file(data):
         # f.write('受信時間,経過時間(秒),MACアドレス,受信強度(rssi),送信強度,uuid,major,minor,uuid,major,minor\n')
         for i in data:
             f.write(str(i))
-    shutil.move(path_w, 'smb://192.168.10.2/BLE_data/')
+    shutil.move(path_w, '/run/user/1000/gvfs/smb-share:server=192.168.10.2,share=ble_data')
 
 
 def callback(bt_addr, rssi, packet, additional_info):
