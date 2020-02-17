@@ -50,11 +50,11 @@ def main():
     # scan for all iBeacon advertisements from beacons with the specified uuid
     scanner = BeaconScanner(
         callback,
-        device_filter=IBeaconFilter(uuid="e7d61ea3-f8dd-49c8-8f2f-f2484c07acb9", major=7436, minor=17873)
+        device_filter=IBeaconFilter(uuid="e7d61ea3-f8dd-49c8-8f2f-f2484c07acb9", major=1, minor=81)
     )
 
     scanner.start()
-    time.sleep(15)
+    time.sleep(300)
     scanner.stop()
     write_file(datalist)
 
