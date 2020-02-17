@@ -1,8 +1,19 @@
 import blescan
 import sys
 import time
-
+import subprocess
 import bluetooth._bluetooth as bluez
+
+cmd = "hostname -I | cut -d\' \' -f1"
+IP = subprocess.check_output(cmd, shell=True).decode('utf-8').rstrip('\n')
+
+path_w = IP + '.csv'
+datalist = []
+
+def write_file(data):
+    with open(path_w, mode='a') as f:
+        for i in data:
+            f.write(str(i))
 
 dev_id = 0
 try:
@@ -20,11 +31,13 @@ time_sta = time.time()
 
 while True:
     elapsed_time = time.time() - time_sta
-    if elapsed_time >= 10:
+    if elapsed_time >= 300:
+        write_file(datalist)
         print "finish"
         break
     returnedList = blescan.parse_events(sock, 10)
     for beacon in returnedList:
         if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
             print "----------"
-            print str(int(elapsed_time)) + 's : ' + beacon.split(',')[5]
+            print str(elapsed_time) + 's : ' + beacon.split(',')[5]
+            datalist.append(str(time.time()) + ',' + beacon.split(',')[5])
