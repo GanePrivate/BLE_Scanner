@@ -16,7 +16,6 @@ except:
 blescan.hci_le_set_scan_parameters(sock)
 blescan.hci_enable_le_scan(sock)
 
-# 時間計測開始
 time_sta = time.perf_counter()
 
 while True:
