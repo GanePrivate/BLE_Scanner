@@ -26,28 +26,24 @@ def write_file(data):
 def callback(bt_addr, rssi, packet, additional_info):
     global BleGetFlag, start
 
-    try:
+    if BleGetFlag:
+        start = time.time()
+        BleGetFlag = False
 
-        if BleGetFlag:
-            start = time.time()
-            BleGetFlag = False
+    # 経過時間を計算
+    elapsed_time = int(time.time() - start)
+    # 現在の年月日時間情報取得
+    now = datetime.datetime.now()
 
-        # 経過時間を計算
-        elapsed_time = int(time.time() - start)
-        # 現在の年月日時間情報取得
-        now = datetime.datetime.now()
+    nowtime = now.strftime('%H:%M:%S.%f')
 
-        nowtime = now.strftime('%H:%M:%S.%f')
-
-        # data = nowtime + "," + str(elapsed_time) + "," + str(bt_addr) + "," + str(rssi) + "," + str(packet) + "," + str(additional_info) + "\n"
-        data = nowtime + ","  + str(rssi) + "," + str(10**((-70 - rssi) / 20)) + "\n"
-        # print("{} :: <{}, {}> {}".format(nowtime, bt_addr, rssi, packet))
-        print("{} : {}dBm, {}m".format(nowtime, rssi, 10**((-70 - rssi) / 20)))
-        datalist.append(data)
-        # print("経過時間：{}秒".format(elapsed_time))
-        # print('{}m'.format(10**((-70 - rssi) / 20)))
-    except:
-        print('error')
+    # data = nowtime + "," + str(elapsed_time) + "," + str(bt_addr) + "," + str(rssi) + "," + str(packet) + "," + str(additional_info) + "\n"
+    data = nowtime + ","  + str(rssi) + "," + str(10**((-70 - rssi) / 20)) + "\n"
+    # print("{} :: <{}, {}> {}".format(nowtime, bt_addr, rssi, packet))
+    print("{} : {}dBm, {}m".format(nowtime, rssi, 10**((-70 - rssi) / 20)))
+    datalist.append(data)
+    # print("経過時間：{}秒".format(elapsed_time))
+    # print('{}m'.format(10**((-70 - rssi) / 20)))
 
 
 def main():
