@@ -32,9 +32,10 @@ tmp = datetime.datetime.now()
 dt = datetime.datetime(tmp.year, tmp.month, tmp.day, tmp.hour, tmp.minute, tmp.second+10)
 
 while True:
-    if datetime.datetime.now() == dt:
+    if datetime.datetime.now() >= dt:
         break
 time_sta = time.time()
+print "start"
 
 while True:
     elapsed_time = time.time() - time_sta
