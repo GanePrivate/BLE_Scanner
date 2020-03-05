@@ -44,7 +44,7 @@ while True:
         print "finish"
         break
     start_time = datetime.datetime.now()+datetime.timedelta(milliseconds=100)
-    if datetime.datetime.now() ==  start_time:
+    if datetime.datetime.now() >=  start_time:
         returnedList = blescan.parse_events(sock, 10)
         for beacon in returnedList:
             if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
