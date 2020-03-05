@@ -32,7 +32,7 @@ tmp = datetime.datetime.now()
 dt = datetime.datetime(tmp.year, tmp.month, tmp.day, tmp.hour, tmp.minute, tmp.second+10)
 
 while True:
-    if datetime.datetime.now() >= dt:
+    if datetime.datetime.now() == dt:
         break
 time_sta = time.time()
 print "start"
@@ -44,11 +44,11 @@ while True:
         print "finish"
         break
     start_time = datetime.datetime.now()+datetime.timedelta(milliseconds=100)
-    if datetime.datetime.now() >=  start_time:
+    if datetime.datetime.now() ==  start_time:
         returnedList = blescan.parse_events(sock, 10)
         for beacon in returnedList:
             if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
-                # print "----------"
+                print "----------"
                 rssi = beacon.split(',')[5]
                 # print str(elapsed_time) + 's : ' + rssi + ',' + str(10**((-70 - float(rssi)) / 20))
                 nowtime = start_time.strftime('%H:%M:%S.%f')
