@@ -28,13 +28,13 @@ except:
 blescan.hci_le_set_scan_parameters(sock)
 blescan.hci_enable_le_scan(sock)
 
-time_sta = time.time()
 tmp = datetime.datetime.now()
-dt = datetime.datetime(tmp.year, tmp.month, tmp.day, tmp.hour, tmp.minute + 1)
+dt = datetime.datetime(tmp.year, tmp.month, tmp.day, tmp.hour, tmp.minute, tmp.second+10)
 
 while True:
     if datetime.datetime.now() == dt:
         break
+time_sta = time.time()
 
 while True:
     elapsed_time = time.time() - time_sta
