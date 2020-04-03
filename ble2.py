@@ -32,7 +32,7 @@ time_sta = time.time()
 
 while True:
     elapsed_time = time.time() - time_sta
-    if elapsed_time >= 30:
+    if elapsed_time >= 50:
         write_file(datalist)
         print "finish"
         break
