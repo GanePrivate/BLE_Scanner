@@ -32,13 +32,13 @@ time_sta = time.time()
 
 while True:
     elapsed_time = time.time() - time_sta
-    if elapsed_time >= 60:
+    if elapsed_time >= 300:
         write_file(datalist)
         print "finish"
         break
     returnedList = blescan.parse_events(sock, 10)
     for beacon in returnedList:
-        if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '81':
+        if beacon.split(',')[1] == 'e7d61ea3f8dd49c88f2ff2484c07acb9' and beacon.split(',')[2] == '1' and beacon.split(',')[3] == '70':
             print "----------"
             rssi = beacon.split(',')[5]
             # print str(elapsed_time) + 's : ' + rssi + ',' + str(10**((-70 - float(rssi)) / 20))
