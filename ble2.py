@@ -45,3 +45,4 @@ while True:
             now = datetime.datetime.now()
             nowtime = now.strftime('%H:%M:%S.%f')
             datalist.append(str(nowtime) + ',' + rssi + ',' + str(10**((-70 - float(rssi)) / 20)) + '\n')
+    time.sleep(0.1)
